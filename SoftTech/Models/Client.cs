@@ -5,13 +5,13 @@ namespace SoftTech.Models;
 
 public partial class Client
 {
-    public int id { get; set; }
+    public string id { get; set; } = null!;
 
-    public string client_name { get; set; } = null!;
+    public string name { get; set; } = null!;
 
-    public string dir { get; set; } = null!;
+    public string? address { get; set; }
 
-    public string tel { get; set; } = null!;
+    public string? phone_number { get; set; }
 
     public string email { get; set; } = null!;
 

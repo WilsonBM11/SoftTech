@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SoftTech.Models.Client>
+
+@{
+    ViewData["SoftTech"] = "Client List";
+}
+
+<h1>Client List</h1>
+
+<p>
+    <a asp-action="Create">Create New Client</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Dirección
+            </th>
+            <th>
+                Número de Teléfono
+            </th>
+            <th>
+                Correo
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.profile_picture)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.profile_picture)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

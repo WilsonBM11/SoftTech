@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using SoftTech.Data;
+using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
 using SoftTech.Repositories.Abstract;
@@ -11,7 +13,7 @@ namespace SoftTech.Repositories.Implementation
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-
+        TestUCRContext db = new TestUCRContext();
 
         public UserAuthenticationService(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -113,7 +115,18 @@ namespace SoftTech.Repositories.Implementation
             {
                 await userManager.AddToRoleAsync(user, model.Role);
             }
-            
+
+            var client = new Client
+            {
+                id = user.Id,
+                name = model.Name,
+                email = model.Email,
+                phone_number = model.Phone_Number,
+                address = model.Address
+            };
+            db.Client.Add(client);
+            db.SaveChanges();
+
             status.StatusCode = 1;
             status.Message = "User Has Registered Successfully";
             return status;

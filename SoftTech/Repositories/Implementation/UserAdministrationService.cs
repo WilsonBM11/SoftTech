@@ -27,7 +27,7 @@ namespace SoftTech.Repositories.Implementation
             {
                 var userRoles = await userManager.GetRolesAsync(user);
                 userIList.Add(new UserInformation() { User= user, Roles = (List<string>) userRoles});
-            }
+            } 
             return userIList;
         }
         public async Task<UserInformation> GetUserByIdAsync(string id)
@@ -111,7 +111,7 @@ namespace SoftTech.Repositories.Implementation
                 UserName = model.UserName,
                 Phone_Number = model.Phone_Number,
                 Address = model.Address,
-                EmailConfirmed = true,
+                EmailConfirmed = true,                
 
             };
 
@@ -133,17 +133,6 @@ namespace SoftTech.Repositories.Implementation
             {
                 await userManager.AddToRoleAsync(user, model.Role);
             }
-
-            //guardar en BD
-            var client = new Client
-            {
-                client_name = model.Name,
-                email = model.Email,
-                tel = model.Phone_Number,
-                dir = model.Address
-            };
-            db.Client.Add(client);
-            db.SaveChanges();
 
             status.StatusCode = 1;
             status.Message = "User Has Registered Successfully";

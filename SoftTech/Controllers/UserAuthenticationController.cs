@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SoftTech.Data;
+using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
 using SoftTech.Repositories.Abstract;
@@ -13,6 +15,8 @@ namespace SoftTech.Controllers
         //Se instancia el servicio de UserAuthentication y el UserManager
         private readonly IUserAuthenticationService _service;
         private readonly UserManager<ApplicationUser> _userManager;
+        TestUCRContext db = new TestUCRContext();
+
         public UserAuthenticationController(IUserAuthenticationService service, UserManager<ApplicationUser> userManager)
         {
             this._service = service;
@@ -36,8 +40,8 @@ namespace SoftTech.Controllers
             //Crea el usuario
             var result = await _service.RegistrationAsync(model);
 
-            TempData["msg"] = result.Message;
-            
+            TempData["msg"] = result.Message;       
+
             return RedirectToAction(nameof(Authentication));
         }
 
