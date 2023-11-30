@@ -12,6 +12,10 @@ namespace SoftTech.Models.DTO
         [Required]
         public string UserName { get; set; }
         [Required]
+        public string Phone_Number { get; set; }
+        [Required]
+        public string Address { get; set; }
+        [Required]
         [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Minimun lenght 6 and must contain 1 UpperCase, 1 LowerCase, 1 Special Character and 1 Digit")]
         public string Password { get; set; }
         [Required]
