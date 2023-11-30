@@ -12,7 +12,7 @@ using SoftTech.Models.Domain;
 namespace SoftTech.Migrations
 {
     [DbContext(typeof(DataBaseSecurityContext))]
-    [Migration("20231130085541_init")]
+    [Migration("20231130170102_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -166,6 +166,9 @@ namespace SoftTech.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -203,6 +206,9 @@ namespace SoftTech.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Phone_Number")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("nvarchar(max)");
