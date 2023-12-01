@@ -1,6 +1,7 @@
 ﻿using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
+using System.Security.Claims;
 
 namespace SoftTech.Repositories.Abstract
 {
@@ -12,5 +13,7 @@ namespace SoftTech.Repositories.Abstract
         Task<Status> UpdateAsyncSA(UserInformation user);
         Task<Status> UpdateAsyncA(UserInformation user);
         Task<Status> DeleteAsync(ApplicationUser user);
+        Task<UserInformation> GetUserByEmailAsync(string email);
+        Task<ApplicationUser> GetUserAsync(ClaimsPrincipal current_user);
     }
 }

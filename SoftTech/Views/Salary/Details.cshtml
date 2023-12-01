@@ -1,0 +1,59 @@
+﻿@model SoftTech.Models.Entites.Salary
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Salary</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Empleado:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.id_employeeNavigation.name_emp)
+        </dd>
+        <dt class="col-sm-2">
+            Salario Mensual
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.id_employeeNavigation.salary)
+        </dd>
+        <dt class = "col-sm-2">
+            Horas Extra
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.horas_e)
+        </dd>
+        <dt class = "col-sm-2">
+            Salario Bruto
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.gross_salary)
+        </dd>
+        <dt class = "col-sm-2">
+            Impuesto Renta Salario
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.income_tax)
+        </dd>
+        <dt class = "col-sm-2">
+            CCSS
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ccss_amount)
+        </dd>
+        <dt class = "col-sm-2">
+            Salario Neto
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.net_salary)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-route-id_payroll="@Model.id_payroll">Back to List</a>
+</div>

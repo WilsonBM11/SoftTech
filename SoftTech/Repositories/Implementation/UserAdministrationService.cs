@@ -3,6 +3,7 @@ using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
 using SoftTech.Repositories.Abstract;
+using System.Security.Claims;
 
 namespace SoftTech.Repositories.Implementation
 {
@@ -99,8 +100,15 @@ namespace SoftTech.Repositories.Implementation
                 return status;
             }
 
+            var user_id = Guid.NewGuid().ToString();
+            if (model.UserId != null)
+            {
+                user_id = model.UserId;
+            }
+
             ApplicationUser user = new ApplicationUser
             {
+                Id = user_id,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 Name = model.Name,
                 Email = model.Email,
@@ -152,6 +160,18 @@ namespace SoftTech.Repositories.Implementation
             status.StatusCode = 1;
             status.Message = "User Has Updated Successfully";
             return status;
+        }
+
+        public async Task<UserInformation> GetUserByEmailAsync(string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+            var userRoles = await userManager.GetRolesAsync(user);
+            return new UserInformation() { User = user, Roles = (List<string>)userRoles };
+        }
+
+        public async Task<ApplicationUser> GetUserAsync(ClaimsPrincipal current_user)
+        {
+            return await userManager.GetUserAsync(current_user);
         }
     }
 }

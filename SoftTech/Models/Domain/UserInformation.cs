@@ -1,6 +1,4 @@
-﻿using SoftTech.Models.Domain;
-
-namespace SoftTech.Models
+﻿namespace SoftTech.Models.Domain
 {
     public class UserInformation
     {
