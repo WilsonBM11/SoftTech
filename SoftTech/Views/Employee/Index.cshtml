@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Empleados</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a id="sub" asp-action="Create">Crear empleado</a>
 </p>
 <table class="table">
     <thead>
@@ -43,41 +43,45 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.identification)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.name_emp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone_number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address_emp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.birthdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.contract_date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_deptoNavigation.name_depto)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.identification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name_emp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address_emp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.birthdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contract_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_deptoNavigation.name_depto)
+                </td>
+                <td>
+                    <select id="selectCRUD" onchange="redirectToView(this)">
+                        <option value="" selected>Select an option</option>
+                        <option value="@Url.Action("Edit", new { id = @item.id })">Editar</option>
+                        <option value="@Url.Action("Details", new { id = @item.id })">Ver mas</option>
+                        <option value="@Url.Action("Delete", new { id = @item.id })">Eliminar</option>
+                    </select>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

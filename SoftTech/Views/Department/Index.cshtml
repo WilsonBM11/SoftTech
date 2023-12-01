@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Departamentos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a id="sub" asp-action="Create">Crear departamento</a>
 </p>
 <table class="table">
     <thead>
@@ -22,20 +22,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name_depto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description_depto)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name_depto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description_depto)
+                </td>
+                <td>
+                    <select id="selectCRUD" onchange="redirectToView(this)">
+                        <option value="" selected>Select an option</option>
+                        <option value="@Url.Action("Edit", new { id = @item.id })">Editar</option>
+                        <option value="@Url.Action("Details", new { id = @item.id })">Ver mas</option>
+                        <option value="@Url.Action("Delete", new { id = @item.id })">Eliminar</option>
+                    </select>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
