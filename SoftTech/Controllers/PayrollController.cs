@@ -6,7 +6,7 @@ using SoftTech.Models.Entites;
 
 namespace SoftTech.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "human_resources")]
     public class PayrollController : Controller
     {
         private DataContext db = new DataContext();

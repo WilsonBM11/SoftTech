@@ -8,7 +8,7 @@ using SoftTech.Models.ViewBags;
 
 namespace SoftTech.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "human_resources")]
     public class SalaryController : Controller
     {
         private DataContext db = new DataContext();

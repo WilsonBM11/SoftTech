@@ -7,7 +7,7 @@ using SoftTech.Repositories.Abstract;
 
 namespace SoftTech.Controllers
 {
-    [Authorize(Roles = "employee")]
+    [Authorize]
     public class SalaryEmployeeController : Controller
     {
         private readonly IUserAdministrationService _service;

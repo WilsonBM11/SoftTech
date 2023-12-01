@@ -10,7 +10,7 @@ using System.Data;
 
 namespace SoftTech.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "human_resources")]
     public class EmployeeController : Controller
 	{
         private readonly IUserAdministrationService _service;
