@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Payroll</h1>
 
 <form asp-action="Create">
     <div class="form-group">
@@ -36,32 +36,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.date_payroll)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.income_tax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.employer_ccss)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.employee_ccss)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.total_salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.total_payment)
-            </td>
-            <td>
-                <a asp-controller="Salary" asp-action="Index" asp-route-id_payroll="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_payroll)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.income_tax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employer_ccss)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employee_ccss)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total_salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total_payment)
+                </td>
+                <td>
+                    <select id="selectCRUD" onchange="redirectToView(this)">
+                        <option value="" selected>Select an option</option>
+                        <option value="@Url.Action("Edit", new { id = @item.id })">Editar</option>
+                        <option value="@Url.Action("Details", new { id = @item.id })">Ver mas</option>
+                        <option value="@Url.Action("Delete", new { id = @item.id })">Eliminar</option>
+                    </select>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

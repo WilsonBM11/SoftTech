@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create" asp-route-id_payroll="@ViewBag.Payroll.id">Create New</a>
+    <a id="sub" asp-action="Create" asp-route-id_payroll="@ViewBag.Payroll.id">Agregar salario</a>
 </p>
 
 <table class="table">
@@ -38,34 +38,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_employeeNavigation.name_emp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_employeeNavigation.salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horas_e)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gross_salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.income_tax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ccss_amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.net_salary)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_employeeNavigation.name_emp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_employeeNavigation.salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.horas_e)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gross_salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.income_tax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ccss_amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.net_salary)
+                </td>
+                <td>
+                    <select id="selectCRUD" onchange="redirectToView(this)">
+                        <option value="" selected>Seleccione</option>
+                        <option value="@Url.Action("Details", new { id = @item.id })">Ver mas</option>
+                        <option value="@Url.Action("Delete", new { id = @item.id })">Eliminar</option>
+                    </select>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
