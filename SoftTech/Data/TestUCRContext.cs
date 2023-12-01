@@ -36,7 +36,7 @@ public partial class TestUCRContext : DbContext
     {
         modelBuilder.Entity<Client>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Client__3213E83FB7B7909A");
+            entity.HasKey(e => e.id).HasName("PK__Client__3213E83F15C94E58");
 
             entity.ToTable("Client");
 
@@ -54,6 +54,9 @@ public partial class TestUCRContext : DbContext
                 .HasMaxLength(15)
                 .IsUnicode(false);
             entity.Property(e => e.profile_picture).IsUnicode(false);
+            entity.Property(e => e.userName)
+                .HasMaxLength(200)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Department>(entity =>
@@ -77,6 +80,7 @@ public partial class TestUCRContext : DbContext
                 .HasMaxLength(36)
                 .IsUnicode(false);
             entity.Property(e => e.birthdate).HasColumnType("date");
+            entity.Property(e => e.contract_date).HasColumnType("date");
             entity.Property(e => e.id_depto)
                 .HasMaxLength(36)
                 .IsUnicode(false);

@@ -1,0 +1,52 @@
+﻿@model SoftTech.Models.Client
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar</h1>
+<body id="bodyList">
+
+    <h3>¿Estás seguro de eliminar al cliente?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Nombre:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.name)
+            </dd>
+            <dt class="col-sm-2">
+                Dirección:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.address)
+            </dd>
+            <dt class="col-sm-2">
+                Teléfono:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.phone_number)
+            </dd>
+            <dt class="col-sm-2">
+                Correo electrónico:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.email)
+            </dd>
+            <dt class="col-sm-2">
+                Foto de perfil:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.profile_picture)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-route-id=@Model.id />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Client_List">Regresar</a>
+        </form>
+    </div>
+</body>

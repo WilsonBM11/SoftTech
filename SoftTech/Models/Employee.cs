@@ -23,6 +23,10 @@ public partial class Employee
 
     public string id_depto { get; set; } = null!;
 
+    public DateTime contract_date { get; set; }
+
+    public double salary { get; set; }
+
     public virtual ICollection<Salary> Salaries { get; set; } = new List<Salary>();
 
     public virtual ICollection<Vacation> Vacations { get; set; } = new List<Vacation>();

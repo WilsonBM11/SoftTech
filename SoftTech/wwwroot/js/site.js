@@ -2,3 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+function redirectToView(selectElement) {
+    var selectedValue = selectElement.value;
+    if (selectedValue !== "") {
+        window.location.href = selectedValue;
+    }
+}

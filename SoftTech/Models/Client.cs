@@ -15,5 +15,7 @@ public partial class Client
 
     public string email { get; set; } = null!;
 
+    public string userName { get; set; } = null!;
+
     public string? profile_picture { get; set; }
 }

@@ -73,5 +73,21 @@ namespace SoftTech.Controllers
             await _service.LogoutAsync();
             return RedirectToAction(nameof(Authentication));
         }
+
+        //Registro de administrador
+        public async Task<IActionResult> RegAdmin()
+        {
+            var model = new RegistrationModel
+            {
+                UserName = "Admin",
+                Name = "Administrador",
+                Email = "fio.mn1911@gmail.com",
+                Password = "Admin2023!",
+            };
+            model.Role = "admin";
+            var result = await _service.RegistrationAsync(model);
+            return Ok(result);
+        }
+
     }
 }

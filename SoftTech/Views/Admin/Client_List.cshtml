@@ -4,56 +4,62 @@
     ViewData["SoftTech"] = "Client List";
 }
 
-<h1>Client List</h1>
+<body id="bodyList">
+    <h1>Lista de Clientes</h1>
 
-<p>
-    <a asp-action="Create">Create New Client</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Dirección
-            </th>
-            <th>
-                Número de Teléfono
-            </th>
-            <th>
-                Correo
-            </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.profile_picture)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone_number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.profile_picture)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p >
+        <a id="sub" asp-action="Create">Crear Cliente</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Teléfono
+                </th>
+                <th>
+                    Correo electrónico
+                </th>
+                <th>
+                    Nombre de usuario
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userName)
+                    </td>
+                    <td>
+                        <select id="selectCRUD" onchange="redirectToView(this)">
+                            <option value="" selected>Select an option</option>
+                            <option value="@Url.Action("Edit", new { id = @item.id })">Editar</option>
+                            <option value="@Url.Action("Details", new { id = @item.id })">Ver mas</option>
+                            <option value="@Url.Action("Delete", new { id = @item.id })">Eliminar</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
