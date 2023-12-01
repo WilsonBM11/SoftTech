@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SoftTech.Data;
+using SoftTech.Models;
 
 namespace SoftTech.Controllers
 {
@@ -8,5 +10,6 @@ namespace SoftTech.Controllers
     public class ClientController : Controller
     {
         
+
     }
 }

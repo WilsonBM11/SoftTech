@@ -18,6 +18,11 @@ namespace SoftTech.Controllers
             return View();
         }
 
+        public IActionResult Home_Page()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

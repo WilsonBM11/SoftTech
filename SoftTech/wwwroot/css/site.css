@@ -4,33 +4,76 @@
     width: 100%;
 }
 
-  
+
     .table th {
         padding: 10px;
         text-align: left;
-        background-color: #0f0c29; 
+        background-color: #0f0c29;
         color: white;
     }
 
-   
+
     .table td {
         padding: 8px;
         text-align: left;
     }
 
-    #bodyList{
-        background-color:whitesmoke;
+#bodyList {
+    background-color: whitesmoke;
+}
+
+#homePage {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://img.freepik.com/foto-gratis/fondo-comunicacion-global-diseno-redes-empresariales_53876-160250.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+    #homePage .overlay {
+        background: rgba(0, 0, 0, 0.2); /* Transparencia del fondo */
+        
+        
     }
+
+#homePge .content {
+    z-index: 2;
+    text-align: center;
+}
+
+#homePage p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
 
 h1 {
     padding-left: 450px;
     margin-bottom: 100px;
 }
 
+.bg-custom {
+    background-color: #0f0c29;
+}
+
+.contact-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
 #sub {
     display: inline-block;
     padding: 10px;
-    background-color: #0f0c29; 
+    background-color: #0f0c29;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -55,16 +98,16 @@ h1 {
 form {
     max-width: 400px;
     padding: 20px;
-    background-color: #ecf0f1; 
+    background-color: #ecf0f1;
     border: 1px solid #bdc3c7;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #0f0c29; 
+    color: #0f0c29;
 }
 
 
@@ -79,7 +122,7 @@ form {
 
 
 .btn-primary {
-    background-color: #0f0c29; 
+    background-color: #0f0c29;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -89,7 +132,7 @@ form {
 
 
 a {
-    color: #3498db; 
+    color: #3498db;
     text-decoration: none;
     margin-top: 10px;
     display: inline-block;
