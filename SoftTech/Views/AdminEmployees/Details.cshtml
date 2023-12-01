@@ -1,0 +1,72 @@
+﻿@model SoftTech.Models.Entites.Employee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Identificacion
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.identification)
+        </dd>
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.name_emp)
+        </dd>
+        <dt class="col-sm-2">
+            Correo
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class="col-sm-2">
+            Telefono
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.phone_number)
+        </dd>
+        <dt class="col-sm-2">
+            Direccion
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.address_emp)
+        </dd>
+        <dt class="col-sm-2">
+            Fecha Nacimiento
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.birthdate)
+        </dd>
+        <dt class="col-sm-2">
+            Fecha Contratacion
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.contract_date)
+        </dd>
+        <dt class="col-sm-2">
+            Salario
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.salary)
+        </dd>
+        <dt class="col-sm-2">
+            Departamento
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.id_deptoNavigation.name_depto)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SoftTech.Models.Entites.Payroll>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Fecha Nomina
+            </th>
+            <th>
+                Impuesto Renta Salarios
+            </th>
+            <th>
+                CCSS Patrono
+            </th>
+            <th>
+                CCSS Empleados
+            </th>
+            <th>
+                Total Salarios
+            </th>
+            <th>
+                Total a Pagar
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_payroll)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.income_tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employer_ccss)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee_ccss)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_payment)
+            </td>
+            <td>
+                <a asp-controller="Salary" asp-action="Index" asp-route-id_payroll="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

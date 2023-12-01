@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SoftTech.Models.Entites.Salary>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Fecha Pago
+            </th>
+            <th>
+                Empleado
+            </th>
+            <th>
+                Horas Extra
+            </th>
+            <th>
+                Salario Bruto
+            </th>
+            <th>
+                Impuesto Renta Salario
+            </th>
+            <th>
+                CCSS
+            </th>
+            <th>
+                Salario Neto
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_payrollNavigation.date_payroll)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_employeeNavigation.name_emp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horas_e)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gross_salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.income_tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ccss_amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.net_salary)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
