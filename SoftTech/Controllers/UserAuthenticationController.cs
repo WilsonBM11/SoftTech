@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SoftTech.Data;
+using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
 using SoftTech.Repositories.Abstract;
@@ -13,6 +15,8 @@ namespace SoftTech.Controllers
         //Se instancia el servicio de UserAuthentication y el UserManager
         private readonly IUserAuthenticationService _service;
         private readonly UserManager<ApplicationUser> _userManager;
+        TestUCRContext db = new TestUCRContext();
+
         public UserAuthenticationController(IUserAuthenticationService service, UserManager<ApplicationUser> userManager)
         {
             this._service = service;
@@ -36,8 +40,8 @@ namespace SoftTech.Controllers
             //Crea el usuario
             var result = await _service.RegistrationAsync(model);
 
-            TempData["msg"] = result.Message;
-            
+            TempData["msg"] = result.Message;       
+
             return RedirectToAction(nameof(Authentication));
         }
 
@@ -53,7 +57,7 @@ namespace SoftTech.Controllers
             var result = await _service.LoginAsync(model);
             if (result.StatusCode == 1)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home_Page", "Home");
             }
             else
             {
@@ -69,5 +73,21 @@ namespace SoftTech.Controllers
             await _service.LogoutAsync();
             return RedirectToAction(nameof(Authentication));
         }
+
+        //Registro de administrador
+        public async Task<IActionResult> RegAdmin()
+        {
+            var model = new RegistrationModel
+            {
+                UserName = "Admin",
+                Name = "Administrador",
+                Email = "fio.mn1911@gmail.com",
+                Password = "Admin2023!",
+            };
+            model.Role = "admin";
+            var result = await _service.RegistrationAsync(model);
+            return Ok(result);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SoftTech.Data;
 using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
@@ -11,6 +12,7 @@ namespace SoftTech.Repositories.Implementation
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        TestUCRContext db = new TestUCRContext();
 
         public UserAdministrationService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -26,7 +28,7 @@ namespace SoftTech.Repositories.Implementation
             {
                 var userRoles = await userManager.GetRolesAsync(user);
                 userIList.Add(new UserInformation() { User= user, Roles = (List<string>) userRoles});
-            }
+            } 
             return userIList;
         }
         public async Task<UserInformation> GetUserByIdAsync(string id)
@@ -42,6 +44,8 @@ namespace SoftTech.Repositories.Implementation
             model.Name = user.User.Name;
             model.UserName = user.User.UserName;
             model.Email = user.User.Email;
+            model.Phone_Number= user.User.Phone_Number;
+            model.Address = user.User.Address;
 
             var status = new Status();
             var update = await userManager.UpdateAsync(model);
@@ -113,7 +117,9 @@ namespace SoftTech.Repositories.Implementation
                 Name = model.Name,
                 Email = model.Email,
                 UserName = model.UserName,
-                EmailConfirmed = true,
+                Phone_Number = model.Phone_Number,
+                Address = model.Address,
+                EmailConfirmed = true,                
 
             };
 
@@ -147,6 +153,8 @@ namespace SoftTech.Repositories.Implementation
             model.Name = user.User.Name;
             model.UserName = user.User.UserName;
             model.Email = user.User.Email;
+            model.Phone_Number = user.User.Phone_Number;
+            model.Address = user.User.Address;
 
             var status = new Status();
             var update = await userManager.UpdateAsync(model);

@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using SoftTech.Data;
+using SoftTech.Models;
 using SoftTech.Models.Domain;
 using SoftTech.Models.DTO;
 using SoftTech.Repositories.Abstract;
@@ -11,7 +13,7 @@ namespace SoftTech.Repositories.Implementation
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-
+        TestUCRContext db = new TestUCRContext();
 
         public UserAuthenticationService(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -113,9 +115,86 @@ namespace SoftTech.Repositories.Implementation
             {
                 await userManager.AddToRoleAsync(user, model.Role);
             }
-            
+
+            var client = new Client
+            {
+                id = user.Id,
+                name = model.Name,
+                email = model.Email,
+                phone_number = model.Phone_Number,
+                address = model.Address,
+                userName=model.UserName
+            };
+            db.Client.Add(client);
+            db.SaveChanges();
+
             status.StatusCode = 1;
             status.Message = "User Has Registered Successfully";
+            return status;
+        }
+
+        //edit
+        public async Task<Status> EditAsync(RegistrationModel model)
+        {
+            var status = new Status();
+            var userExists = await userManager.FindByNameAsync(model.UserName);
+            if (userExists == null)
+            {
+                status.StatusCode = 0;
+                status.Message = "User doesn't exist";
+                return status;
+            }
+
+            userExists.UserName = model.UserName;
+            userExists.Email = model.Email;
+            userExists.Name = model.Name;
+            userExists.Address = model.Address;
+            userExists.Phone_Number = model.Phone_Number;
+
+            if (!string.IsNullOrEmpty(model.Password))
+            {
+                userExists.PasswordHash = userManager.PasswordHasher.HashPassword(userExists, model.Password);
+            }
+            var result = await userManager.UpdateAsync(userExists); //updated user
+
+            if (result.Succeeded)
+            {
+                status.StatusCode = 1;
+                status.Message = "User updated successfully";
+            }
+            else
+            {
+                // Error 
+                status.StatusCode = 0;
+                status.Message = "Error updating user";
+            }
+            return status;
+        }
+
+        //delete
+        public async Task<Status> RemoveAsync(string id)
+        {
+            var status = new Status();
+            var userExists = await userManager.FindByIdAsync(id);
+            if (userExists == null)
+            {
+                status.StatusCode = 0;
+                status.Message = "User doesn't exist";
+                return status;
+            }
+
+            var result = await userManager.DeleteAsync(userExists); //deleted user
+            if (result.Succeeded)
+            {
+                status.StatusCode = 1;
+                status.Message = "User deleted successfully";
+            }
+            else
+            {
+                // Error 
+                status.StatusCode = 0;
+                status.Message = "Error deleting user";
+            }
             return status;
         }
     }
